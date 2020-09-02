@@ -26,16 +26,17 @@ def playsong():
     # Picks a random sound from the list of sound files
     random_index = random.randrange(len(files))
     random_sound = files[random_index]
-    print(sounds_playing)
     playsound(random_sound)
 
+    # release semaphore
     sounds_playing.release()
 
-def callback(event):
-    if sounds_playing.acquire(blocking=False):
+while True:
+    event = keyboard.read_event()
+
+    # when key is pressed start thread for playing sound
+    # and check if we can decrement semaphore counter
+    if event.event_type == "down" and sounds_playing.acquire(blocking=False):
+
         thread = threading.Thread(target=playsong)
         thread.start()
-
-
-while keyboard.on_press(callback):
-    pass
