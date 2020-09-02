@@ -1,4 +1,4 @@
-# Keyboard sound (⌨🔉)
+# Keyboard player (⌨🔉)
 
 A program which plays an audio sample on every keypress.
 
