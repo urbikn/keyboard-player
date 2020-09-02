@@ -28,13 +28,13 @@ def playsong():
     random_sound = files[random_index]
     playsound(random_sound)
 
-    # release semaphore
+    # Release semaphore
     sounds_playing.release()
 
 while True:
     event = keyboard.read_event()
 
-    # when key is pressed start thread for playing sound
+    # When key is pressed start thread for playing sound
     # and check if we can decrement semaphore counter
     if event.event_type == "down" and sounds_playing.acquire(blocking=False):
 
